@@ -3,7 +3,7 @@ name: Docker CI/CD
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:   # Позволяет запускать вручную с вкладки Actions
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME | lower }}/${{ github.event.repository.name | lower }}:latest
+          tags: ${{ toLower(secrets.DOCKERHUB_USERNAME) }}/${{ toLower(github.event.repository.name) }}:latest
